@@ -7,3 +7,22 @@
 #todo-list .editing input.edit {
   display: inline; /* Shows input text box when .editing*/
 }
+
+.rolodex-entry {
+  width: 400px;
+  border-style: solid;
+  border-radius: 8px;
+}
+
+.rolodex-entry header h1 {
+  font-size: 30px;
+  padding-top: 5px;
+}
+
+.rolodex-entry header img {
+  padding: 0px;
+}
+
+.rolodex-collapsed div {
+  /*border-style: solid;*/
+}

@@ -2,20 +2,20 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Backbone.js Tutorial</title>
+  <title>Dan's Rolodex</title>
   <link href="css/foundation.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
 
-  <section id="todoapp">
+  <section id="rolodexapp">
     <header id="header">
-      <h1>Todos</h1>
+      <h1>Rolodex</h1>
       <input id="new-todo" placeholder="What needs to be done?">
-      <div>
-        <a href="#/">Show All</a>
-        <a href="#/pending">Show Pending</a>
-        <a href="#/completed">Show Completed</a>
+      <div class="button-group">
+        <a href="#/" class="button">Show All</a>
+        <a href="#/pending" class="button">Show Pending</a>
+        <a href="#/completed" class="button">Show Completed</a>
       </div>
     </header>
     <section id="main">
@@ -36,6 +36,17 @@
       <button class="destroy">remove</button>
     </div>
   </script>
+
+  <article class="rolodex-entry rolodex-collapsed row">
+    <header>
+      <img src="http://www.fillmurray.com/300/300" class="small-3 columns">
+      <div class="small-9 columns">
+        <h1>Bill Murray</h1>
+        <p>Met him at a party!</p>
+      </div>
+    </header>
+  </article>
+
 
   <script src="javascript/scripts.js" type="text/javascript"></script>
 </body>

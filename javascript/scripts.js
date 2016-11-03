@@ -1,6 +1,16 @@
 
 var app = {}; // create namespace for our app
 
+// One entry in our rolodex
+app.RolodexEntry = Backbone.Model.extend({
+  defaults: {
+    name: '',
+    note: '',
+    image: 'http://www.fillmurray.com/300/300',
+    fields: []
+  }
+})
+
 // todo item
 app.Todo = Backbone.Model.extend({
   defaults: {
