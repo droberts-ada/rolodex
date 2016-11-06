@@ -37,17 +37,29 @@ app.FieldList = Backbone.Collection.extend({
 // Should be initialized with an 'el' property for the contact's
 // field list, and a 'model' property for the contact's FieldList
 app.FieldListView = Backbone.View.extend({
+  tagName: 'section',
+  template: _.template($('#field-list-template').html()),
+
   initialize: function() {
     console.log(this.$el);
+  },
+
+  render: function() {
+    console.log("In FieldListView.render()");
+    this.$el.html(this.template(this.model.toJSON()));
+
     this.addFieldButton = this.$('button.create-field');
     this.addFieldButton.addClass('test-class');
     console.log(this.addFieldButton);
 
     this.fieldList = $('field-list')
 
+    // TODO: took these from initialize, not sure if they belong here
     this.model.on('add', this.addOne, this);
     this.model.on('reset', this.addAll, this);
     this.model.fetch();
+
+    return this; // enable chained calls
   },
 
   events: {

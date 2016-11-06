@@ -21,10 +21,9 @@ app.ContactView = Backbone.View.extend({
 
     console.log("Before creating new FieldListView")
     this.fieldListView = new app.FieldListView({
-      el: this.$('.rolodex-fields'),
       model: this.model.fields
     });
-    console.log("After  creating new FieldListView")
+    console.log("After creating new FieldListView")
   },
 
   render: function() {
@@ -35,6 +34,8 @@ app.ContactView = Backbone.View.extend({
 
     this.name_input = this.$('input.name');
     this.note_input = this.$('input.note');
+
+    this.$('.rolodex-entry').append(this.fieldListView.render().el);
 
     return this; // enable chained calls
   },
