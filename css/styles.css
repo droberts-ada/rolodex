@@ -1,28 +1,114 @@
-#todo-list input.edit {
-  display: none; /* Hides input box*/
-}
-#todo-list .editing label {
-  display: none; /* Hides label text when .editing*/
-}
-#todo-list .editing input.edit {
-  display: inline; /* Shows input text box when .editing*/
-}
-
 .rolodex-entry {
   width: 400px;
   border-style: solid;
-  border-radius: 8px;
+  border-radius: 15px;
+  border-width: 2px;
+  margin: 10px;
 }
 
-.rolodex-entry header h1 {
-  font-size: 30px;
-  padding-top: 5px;
-}
-
-.rolodex-entry header img {
+/* Rolodex header */
+.rolodex-entry header .icon {
   padding: 0px;
+  border-top-left-radius: 13px;
+  border-bottom-left-radius: 13px;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-color: black;
+  margin: 0px;
+  height: 100px;
 }
 
-.rolodex-collapsed div {
-  /*border-style: solid;*/
+.rolodex-expanded header .icon {
+  border-bottom-left-radius: 0px;
+}
+
+.rolodex-entry header .name {
+  font-size: 30px;
+  margin-top: 15px;
+  height: 42px;
+  box-sizing: content-box;
+}
+
+/* TODO: possibly genericize this to other fields */
+.rolodex-entry header .note {
+  font-size: 16px;
+  margin-bottom: 7px;
+  height: 25px;
+  box-sizing: content-box;
+}
+
+.rolodex-entry header input.display {
+  padding: 0;
+  border-style: none;
+  border-bottom-style: solid;
+  box-shadow: none;
+  margin-bottom: 7px;
+}
+
+.rolodex-entry header input.edit {
+  padding: 0;
+  border-style: none;
+  border-bottom-style: solid;
+  box-shadow: none;
+  margin-bottom: 7px;
+}
+
+.rolodex-entry header .hidden {
+  display: none;
+}
+
+#create-contact-button {
+  /* TODO: align text vertically */
+  height: 98.5px;
+  font-size: 70px;
+}
+
+/* Buttons on the corner of a rolodex entry */
+.rolodex-entry .rolodex-buttons {
+  padding: 0;
+  visibility: hidden;
+}
+
+.rolodex-expanded .rolodex-buttons {
+  /* Still take up space, but don't render */
+  visibility: visible;
+}
+
+.rolodex-entry .rolodex-buttons button {
+  /* TODO: make them together take up the full vertical space */
+  max-width: 100%;
+  margin: 0;
+  height: 50px;
+  border-left-style: solid;
+  border-left-color: black;
+  border-left-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: black;
+  border-bottom-width: 2px;
+}
+
+.rolodex-entry .rolodex-buttons button.hidden {
+  /* Don't take space (swap the two buttons) */
+  display: none;
+}
+
+.rolodex-entry .rolodex-buttons button.top {
+  border-top-right-radius: 13px;
+}
+
+/* Advanced fields in the Rolodex contact */
+.rolodex-fields {
+
+  /* Start hidden */
+  display: none;
+}
+
+.rolodex-fields .create-field {
+  border-bottom-left-radius: 13px;
+  border-bottom-right-radius: 13px;
+  margin: 0px;
+}
+
+.rolodex-expanded .rolodex-fields {
+  display: block;
 }
