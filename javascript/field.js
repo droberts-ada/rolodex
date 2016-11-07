@@ -38,6 +38,7 @@ app.FieldList = Backbone.Collection.extend({
 // field list, and a 'model' property for the contact's FieldList
 app.FieldListView = Backbone.View.extend({
   tagName: 'section',
+  className: 'rolodex-fields',
   template: _.template($('#field-list-template').html()),
 
   initialize: function() {
@@ -58,6 +59,10 @@ app.FieldListView = Backbone.View.extend({
     this.model.on('add', this.addOne, this);
     this.model.on('reset', this.addAll, this);
     this.model.fetch();
+
+    // Re-delegate events on render (the HTML has changed, so all
+    // the old bindings are gone).
+    this.delegateEvents();
 
     return this; // enable chained calls
   },

@@ -11,7 +11,16 @@ app.Contact = Backbone.Model.extend({
 
 // renders individual contacts in our rolodex
 app.ContactView = Backbone.View.extend({
-  tagName: 'section',
+  tagName: 'article',
+  className: function() {
+    var className = 'rolodex-entry'
+    // rolodex-expanded is applied directly to the core HTML
+    // element, so we need to preserve it when we re-render.
+    if (this.$el && this.$el.hasClass('rolodex-expanded')) {
+      className += ' rolodex-expanded'
+    }
+    return className;
+  },
   template: _.template($('#contact-template').html()),
 
   initialize: function(){
@@ -27,15 +36,12 @@ app.ContactView = Backbone.View.extend({
   },
 
   render: function() {
-    template_data = this.model.toJSON();
-    template_data["expanded"] = this.isExpanded();
-
-    this.$el.html(this.template(template_data));
+    this.$el.html(this.template(this.model.toJSON()));
 
     this.name_input = this.$('input.name');
     this.note_input = this.$('input.note');
 
-    this.$('.rolodex-entry').append(this.fieldListView.render().el);
+    this.$el.append(this.fieldListView.render().el);
 
     return this; // enable chained calls
   },
@@ -45,20 +51,11 @@ app.ContactView = Backbone.View.extend({
     'click .rolodex-buttons .edit': 'beginEditing',
     'click .rolodex-buttons .save': 'finishEditing',
     'keypress input.edit': 'updateOnEnter',
-    'click button.destroy': 'destroy',
-    'click button.create-field': 'createField'
-  },
-
-  createField: function() {
-    console.log('In contact.createField')
-  },
-
-  isExpanded: function() {
-    return this.$el.find('.rolodex-entry').hasClass('rolodex-expanded');
+    'click button.destroy': 'destroy'
   },
 
   expand: function() {
-    var target = this.$el.find('.rolodex-entry');
+    var target = this.$el;
     if (target.hasClass('rolodex-collapsing')) {
       // Do nothing if animation is in progress
       return;
@@ -89,15 +86,18 @@ app.ContactView = Backbone.View.extend({
   beginEditing: function(){
     this.$('.rolodex-buttons button.edit').addClass('hidden');
     this.$('.rolodex-buttons button.save').removeClass('hidden');
-    this.$('.rolodex-entry header .display').addClass('hidden');
-    this.$('.rolodex-entry header input.edit').removeClass('hidden');
+    this.$('header .display').addClass('hidden');
+    this.$('header input.edit').removeClass('hidden');
   },
 
   finishEditing: function(){
-    this.$('.rolodex-buttons button.save').addClass('hidden');
-    this.$('.rolodex-buttons button.edit').removeClass('hidden');
-    this.$('.rolodex-entry header input.edit').addClass('hidden');
-    this.$('.rolodex-entry header .display').removeClass('hidden');
+    // The next 4 lines happen implicitly, because the view re-renders
+    // when saveChanges is called. Spooky!
+
+    // this.$('.rolodex-buttons button.save').addClass('hidden');
+    // this.$('.rolodex-buttons button.edit').removeClass('hidden');
+    // this.$('header input.edit').addClass('hidden');
+    // this.$('header .display').removeClass('hidden');
     this.saveChanges();
   },
 

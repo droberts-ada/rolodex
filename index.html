@@ -40,24 +40,22 @@
   <!-- Underscore Templates -->
 
   <script type="text/template" id="contact-template">
-    <article class="rolodex-entry<%- expanded ? " rolodex-expanded" : ""%>">
-      <header class="row">
-        <img src="<%- image %>" class="icon small-3 columns">
+    <header class="row">
+      <img src="<%- image %>" class="icon small-3 columns">
 
-        <div class="small-8 columns">
-          <h1 class="name display"><%- name %></h1>
-          <input type="text" class="name edit hidden" value="<%- name %>">
-          <p class="note display"><%- note %></p>
-          <input type="text" class="note edit hidden" value="<%- note %>">
-        </div>
+      <div class="small-8 columns">
+        <h1 class="name display"><%- name %></h1>
+        <input type="text" class="name edit hidden" value="<%- name %>">
+        <p class="note display"><%- note %></p>
+        <input type="text" class="note edit hidden" value="<%- note %>">
+      </div>
 
-        <div class="rolodex-buttons small-1 columns">
-          <button class="button edit top">📝</button>
-          <button class="success button save hidden top">💾</button>
-          <button class="alert button destroy bottom">X</button>
-        </div>
-      </header>
-    </article>
+      <div class="rolodex-buttons small-1 columns">
+        <button class="button edit top">📝</button>
+        <button class="success button save hidden top">💾</button>
+        <button class="alert button destroy bottom">X</button>
+      </div>
+    </header>
   </script>
 
   <script type="text/template" id="field-template">
@@ -72,13 +70,11 @@
   </script>
 
   <script type="text/template" id="field-list-template">
-    <section class="rolodex-fields">
-      <div class="field-list">
-      </div>
-      <div class="row">
-        <button class="create-field button small-12 columns">Add Field</button>
-      </div>
-    </section>
+    <div class="field-list">
+    </div>
+    <div class="row">
+      <button class="create-field button small-12 columns">Add Field</button>
+    </div>
   </script>
 
   <!-- Site scripts -->
