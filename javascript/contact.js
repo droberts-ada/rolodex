@@ -26,13 +26,15 @@ app.ContactView = Backbone.View.extend({
   initialize: function(){
     this.model.on('change', this.render, this);
     this.model.on('destroy', this.remove, this);
-    this.model.fields = new app.FieldList();
+    var fields = new app.FieldList()
 
     console.log("Before creating new FieldListView")
     this.fieldListView = new app.FieldListView({
-      model: this.model.fields
+      model: fields
     });
     console.log("After creating new FieldListView")
+
+    this.model.set('fields', fields);
   },
 
   render: function() {

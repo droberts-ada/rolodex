@@ -30,8 +30,8 @@ app.FieldView = Backbone.View.extend({
 });
 
 app.FieldList = Backbone.Collection.extend({
-  model: app.Field,
-  localStorage: new Store("backbone-rolodex")
+  model: app.Field
+  // localStorage: new Store("backbone-rolodex")
 });
 
 // Should be initialized with an 'el' property for the contact's
@@ -49,16 +49,12 @@ app.FieldListView = Backbone.View.extend({
     console.log("In FieldListView.render()");
     this.$el.html(this.template(this.model.toJSON()));
 
-    this.addFieldButton = this.$('button.create-field');
-    this.addFieldButton.addClass('test-class');
-    console.log(this.addFieldButton);
-
-    this.fieldList = $('field-list')
+    this.fieldList = $('field-list');
 
     // TODO: took these from initialize, not sure if they belong here
     this.model.on('add', this.addOne, this);
     this.model.on('reset', this.addAll, this);
-    this.model.fetch();
+    // this.model.fetch();
 
     // Re-delegate events on render (the HTML has changed, so all
     // the old bindings are gone).
@@ -73,9 +69,11 @@ app.FieldListView = Backbone.View.extend({
 
   createField: function() {
     console.log("Add a new field!");
+    this.model.create();
   },
 
   addOne: function(field) {
+    console.log("AddOne called");
     var view = new app.FieldView({model: field});
     this.fieldList.append(view.render().el);
   },
